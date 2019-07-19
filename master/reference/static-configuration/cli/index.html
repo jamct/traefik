@@ -1,0 +1,2134 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Traefik Documentation">
+      
+      
+      
+        <meta name="author" content="containo.us">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/img/traefik.icon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>CLI - Traefik</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#00bcd4">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../assets/styles/extra.css">
+    
+      <link rel="stylesheet" href="../../../assets/styles/atom-one-light.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-51880359-3", "docs.traefik.io")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="cyan" data-md-color-accent="cyan">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#static-configuration-cli" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="Traefik" class="md-header-nav__button md-logo">
+          
+            <img src="../../../assets/img/traefik.logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Traefik
+            </span>
+            <span class="md-header-nav__topic">
+              CLI
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/containous/traefik/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="Traefik" class="md-nav__button md-logo">
+      
+        <img src="../../../assets/img/traefik.logo.png" width="48" height="48">
+      
+    </a>
+    Traefik
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/containous/traefik/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Welcome" class="md-nav__link">
+      Welcome
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/quick-start/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/configuration-overview/" title="Configuration Introduction" class="md-nav__link">
+      Configuration Introduction
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Configuration Discovery
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Configuration Discovery
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../providers/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../providers/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../providers/kubernetes-crd/" title="Kubernetes IngressRoute" class="md-nav__link">
+      Kubernetes IngressRoute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../providers/rancher/" title="Rancher" class="md-nav__link">
+      Rancher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../providers/file/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../providers/marathon/" title="Marathon" class="md-nav__link">
+      Marathon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Routing & Load Balancing
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Routing & Load Balancing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../routing/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../routing/entrypoints/" title="Entrypoints" class="md-nav__link">
+      Entrypoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../routing/routers/" title="Routers" class="md-nav__link">
+      Routers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../routing/services/" title="Services" class="md-nav__link">
+      Services
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      HTTPS & TLS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        HTTPS & TLS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../https/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../https/tls/" title="TLS" class="md-nav__link">
+      TLS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../https/acme/" title="Let's Encrypt" class="md-nav__link">
+      Let's Encrypt
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Middlewares
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Middlewares
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/addprefix/" title="AddPrefix" class="md-nav__link">
+      AddPrefix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/basicauth/" title="BasicAuth" class="md-nav__link">
+      BasicAuth
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/buffering/" title="Buffering" class="md-nav__link">
+      Buffering
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/chain/" title="Chain" class="md-nav__link">
+      Chain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/circuitbreaker/" title="CircuitBreaker" class="md-nav__link">
+      CircuitBreaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/compress/" title="Compress" class="md-nav__link">
+      Compress
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/digestauth/" title="DigestAuth" class="md-nav__link">
+      DigestAuth
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/errorpages/" title="Errors" class="md-nav__link">
+      Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/forwardauth/" title="ForwardAuth" class="md-nav__link">
+      ForwardAuth
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/headers/" title="Headers" class="md-nav__link">
+      Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/ipwhitelist/" title="IpWhitelist" class="md-nav__link">
+      IpWhitelist
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/maxconnection/" title="Maxconn" class="md-nav__link">
+      Maxconn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/passtlsclientcert/" title="PassTLSClientCert" class="md-nav__link">
+      PassTLSClientCert
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/ratelimit/" title="RateLimit" class="md-nav__link">
+      RateLimit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/redirectregex/" title="RedirectRegex" class="md-nav__link">
+      RedirectRegex
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/redirectscheme/" title="RedirectScheme" class="md-nav__link">
+      RedirectScheme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/replacepath/" title="ReplacePath" class="md-nav__link">
+      ReplacePath
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/replacepathregex/" title="ReplacePathRegex" class="md-nav__link">
+      ReplacePathRegex
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/retry/" title="Retry" class="md-nav__link">
+      Retry
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/stripprefix/" title="StripPrefix" class="md-nav__link">
+      StripPrefix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../middlewares/stripprefixregex/" title="StripPrefixRegex" class="md-nav__link">
+      StripPrefixRegex
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Operations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Operations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../operations/cli/" title="CLI" class="md-nav__link">
+      CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../operations/dashboard/" title="Dashboard" class="md-nav__link">
+      Dashboard
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../operations/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../operations/ping/" title="Ping" class="md-nav__link">
+      Ping
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Observability
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Observability
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/logs/" title="Logs" class="md-nav__link">
+      Logs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/access-logs/" title="Access Logs" class="md-nav__link">
+      Access Logs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-3" type="checkbox" id="nav-8-3">
+    
+    <label class="md-nav__link" for="nav-8-3">
+      Tracing
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-3">
+        Tracing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/tracing/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/tracing/jaeger/" title="Jaeger" class="md-nav__link">
+      Jaeger
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/tracing/zipkin/" title="Zipkin" class="md-nav__link">
+      Zipkin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/tracing/datadog/" title="DataDog" class="md-nav__link">
+      DataDog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/tracing/instana/" title="Instana" class="md-nav__link">
+      Instana
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../observability/tracing/haystack/" title="Haystack" class="md-nav__link">
+      Haystack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      User Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        User Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guides/crd-acme/" title="Kubernetes and Let's Encrypt" class="md-nav__link">
+      Kubernetes and Let's Encrypt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guides/grpc/" title="gRPC Examples" class="md-nav__link">
+      gRPC Examples
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../user-guides/marathon/" title="Marathon" class="md-nav__link">
+      Marathon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Contributing
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Contributing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/thank-you/" title="Thank You!" class="md-nav__link">
+      Thank You!
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/submitting-issues/" title="Submitting Issues" class="md-nav__link">
+      Submitting Issues
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/submitting-pull-requests/" title="Submitting PRs" class="md-nav__link">
+      Submitting PRs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/building-testing/" title="Building and Testing" class="md-nav__link">
+      Building and Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/documentation/" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/data-collection/" title="Data Collection" class="md-nav__link">
+      Data Collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/advocating/" title="Advocating" class="md-nav__link">
+      Advocating
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/maintainers/" title="Maintainers" class="md-nav__link">
+      Maintainers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12" checked>
+    
+    <label class="md-nav__link" for="nav-12">
+      References
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        References
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12-1" type="checkbox" id="nav-12-1" checked>
+    
+    <label class="md-nav__link" for="nav-12-1">
+      Static Configuration
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-12-1">
+        Static Configuration
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../file/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="CLI" class="md-nav__link md-nav__link--active">
+      CLI
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../env/" title="Environment variables" class="md-nav__link">
+      Environment variables
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12-2" type="checkbox" id="nav-12-2">
+    
+    <label class="md-nav__link" for="nav-12-2">
+      Dynamic Configuration
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-12-2">
+        Dynamic Configuration
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dynamic-configuration/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dynamic-configuration/kubernetes-crd/" title="Kubernetes CRD" class="md-nav__link">
+      Kubernetes CRD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dynamic-configuration/file/" title="File" class="md-nav__link">
+      File
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/containous/traefik/edit/master/docs/content/reference/static-configuration/cli.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="static-configuration-cli">Static Configuration: CLI<a class="headerlink" href="#static-configuration-cli" title="Permanent link">&para;</a></h1>
+<pre class="highlight"><code class="language-txt">--accesslog  (Default: "false")
+    Access log settings.
+
+--accesslog.bufferingsize  (Default: "0")
+    Number of access log lines to process in a buffered way.
+
+--accesslog.fields.defaultmode  (Default: "keep")
+    Default mode for fields: keep | drop
+
+--accesslog.fields.headers.defaultmode  (Default: "keep")
+    Default mode for fields: keep | drop | redact
+
+--accesslog.fields.headers.names.&lt;name&gt;  (Default: "")
+    Override mode for headers
+
+--accesslog.fields.names.&lt;name&gt;  (Default: "")
+    Override mode for fields
+
+--accesslog.filepath  (Default: "")
+    Access log file path. Stdout is used when omitted or empty.
+
+--accesslog.filters.minduration  (Default: "0")
+    Keep access logs when request took longer than the specified duration.
+
+--accesslog.filters.retryattempts  (Default: "false")
+    Keep access logs when at least one retry happened.
+
+--accesslog.filters.statuscodes  (Default: "")
+    Keep access logs with status codes in the specified range.
+
+--accesslog.format  (Default: "common")
+    Access log format: json | common
+
+--acme.acmelogging  (Default: "false")
+    Enable debug logging of ACME actions.
+
+--acme.caserver  (Default: "https://acme-v02.api.letsencrypt.org/directory")
+    CA server to use.
+
+--acme.dnschallenge  (Default: "false")
+    Activate DNS-01 Challenge.
+
+--acme.dnschallenge.delaybeforecheck  (Default: "0")
+    Assume DNS propagates after a delay in seconds rather than finding and querying
+    nameservers.
+
+--acme.dnschallenge.disablepropagationcheck  (Default: "false")
+    Disable the DNS propagation checks before notifying ACME that the DNS challenge
+    is ready. [not recommended]
+
+--acme.dnschallenge.provider  (Default: "")
+    Use a DNS-01 based challenge provider rather than HTTPS.
+
+--acme.dnschallenge.resolvers  (Default: "")
+    Use following DNS servers to resolve the FQDN authority.
+
+--acme.domains  (Default: "")
+    The list of domains for which certificates are generated on startup. Wildcard
+    domains only accepted with DNSChallenge.
+
+--acme.domains[n].main  (Default: "")
+    Default subject name.
+
+--acme.domains[n].sans  (Default: "")
+    Subject alternative names.
+
+--acme.email  (Default: "")
+    Email address used for registration.
+
+--acme.entrypoint  (Default: "")
+    EntryPoint to use.
+
+--acme.httpchallenge  (Default: "false")
+    Activate HTTP-01 Challenge.
+
+--acme.httpchallenge.entrypoint  (Default: "")
+    HTTP challenge EntryPoint
+
+--acme.keytype  (Default: "RSA4096")
+    KeyType used for generating certificate private key. Allow value 'EC256',
+    'EC384', 'RSA2048', 'RSA4096', 'RSA8192'.
+
+--acme.onhostrule  (Default: "false")
+    Enable certificate generation on router Host rules.
+
+--acme.storage  (Default: "acme.json")
+    Storage to use.
+
+--acme.tlschallenge  (Default: "true")
+    Activate TLS-ALPN-01 Challenge.
+
+--api  (Default: "false")
+    Enable api/dashboard.
+
+--api.dashboard  (Default: "true")
+    Activate dashboard.
+
+--api.debug  (Default: "false")
+    Enable additional endpoints for debugging and profiling.
+
+--api.entrypoint  (Default: "traefik")
+    The entry point that the API handler will be bound to.
+
+--api.middlewares  (Default: "")
+    Middleware list.
+
+--api.statistics  (Default: "false")
+    Enable more detailed statistics.
+
+--api.statistics.recenterrors  (Default: "10")
+    Number of recent errors logged.
+
+--configfile  (Default: "")
+    Configuration file to use. If specified all other flags are ignored.
+
+--entrypoints.&lt;name&gt;  (Default: "false")
+    Entry points definition.
+
+--entrypoints.&lt;name&gt;.address  (Default: "")
+    Entry point address.
+
+--entrypoints.&lt;name&gt;.forwardedheaders.insecure  (Default: "false")
+    Trust all forwarded headers.
+
+--entrypoints.&lt;name&gt;.forwardedheaders.trustedips  (Default: "")
+    Trust only forwarded headers from selected IPs.
+
+--entrypoints.&lt;name&gt;.proxyprotocol  (Default: "false")
+    Proxy-Protocol configuration.
+
+--entrypoints.&lt;name&gt;.proxyprotocol.insecure  (Default: "false")
+    Trust all.
+
+--entrypoints.&lt;name&gt;.proxyprotocol.trustedips  (Default: "")
+    Trust only selected IPs.
+
+--entrypoints.&lt;name&gt;.transport.lifecycle.gracetimeout  (Default: "10")
+    Duration to give active requests a chance to finish before Traefik stops.
+
+--entrypoints.&lt;name&gt;.transport.lifecycle.requestacceptgracetimeout  (Default: "0")
+    Duration to keep accepting requests before Traefik initiates the graceful
+    shutdown procedure.
+
+--entrypoints.&lt;name&gt;.transport.respondingtimeouts.idletimeout  (Default: "180")
+    IdleTimeout is the maximum amount duration an idle (keep-alive) connection will
+    remain idle before closing itself. If zero, no timeout is set.
+
+--entrypoints.&lt;name&gt;.transport.respondingtimeouts.readtimeout  (Default: "0")
+    ReadTimeout is the maximum duration for reading the entire request, including
+    the body. If zero, no timeout is set.
+
+--entrypoints.&lt;name&gt;.transport.respondingtimeouts.writetimeout  (Default: "0")
+    WriteTimeout is the maximum duration before timing out writes of the response.
+    If zero, no timeout is set.
+
+--global.checknewversion  (Default: "true")
+    Periodically check if a new version has been released.
+
+--global.sendanonymoususage
+    Periodically send anonymous usage statistics. If the option is not specified, it
+    will be enabled by default.
+
+--hostresolver  (Default: "false")
+    Enable CNAME Flattening.
+
+--hostresolver.cnameflattening  (Default: "false")
+    A flag to enable/disable CNAME flattening
+
+--hostresolver.resolvconfig  (Default: "/etc/resolv.conf")
+    resolv.conf used for DNS resolving
+
+--hostresolver.resolvdepth  (Default: "5")
+    The maximal depth of DNS recursive resolving
+
+--log  (Default: "false")
+    Traefik log settings.
+
+--log.filepath  (Default: "")
+    Traefik log file path. Stdout is used when omitted or empty.
+
+--log.format  (Default: "common")
+    Traefik log format: json | common
+
+--log.level  (Default: "ERROR")
+    Log level set to traefik logs.
+
+--metrics.datadog  (Default: "false")
+    DataDog metrics exporter type.
+
+--metrics.datadog.address  (Default: "localhost:8125")
+    DataDog's address.
+
+--metrics.datadog.pushinterval  (Default: "10")
+    DataDog push interval.
+
+--metrics.influxdb  (Default: "false")
+    InfluxDB metrics exporter type.
+
+--metrics.influxdb.address  (Default: "localhost:8089")
+    InfluxDB address.
+
+--metrics.influxdb.database  (Default: "")
+    InfluxDB database used when protocol is http.
+
+--metrics.influxdb.password  (Default: "")
+    InfluxDB password (only with http).
+
+--metrics.influxdb.protocol  (Default: "udp")
+    InfluxDB address protocol (udp or http).
+
+--metrics.influxdb.pushinterval  (Default: "10")
+    InfluxDB push interval.
+
+--metrics.influxdb.retentionpolicy  (Default: "")
+    InfluxDB retention policy used when protocol is http.
+
+--metrics.influxdb.username  (Default: "")
+    InfluxDB username (only with http).
+
+--metrics.prometheus  (Default: "false")
+    Prometheus metrics exporter type.
+
+--metrics.prometheus.buckets  (Default: "0.100000, 0.300000, 1.200000, 5.000000")
+    Buckets for latency metrics.
+
+--metrics.prometheus.entrypoint  (Default: "traefik")
+    EntryPoint.
+
+--metrics.prometheus.middlewares  (Default: "")
+    Middlewares.
+
+--metrics.statsd  (Default: "false")
+    StatsD metrics exporter type.
+
+--metrics.statsd.address  (Default: "localhost:8125")
+    StatsD address.
+
+--metrics.statsd.pushinterval  (Default: "10")
+    StatsD push interval.
+
+--ping  (Default: "false")
+    Enable ping.
+
+--ping.entrypoint  (Default: "traefik")
+    Ping entryPoint.
+
+--ping.middlewares  (Default: "")
+    Middleware list.
+
+--providers.docker  (Default: "false")
+    Enable Docker backend with default settings.
+
+--providers.docker.constraints  (Default: "")
+    Constraints is an expression that Traefik matches against the container's labels
+    to determine whether to create any route for that container.
+
+--providers.docker.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+    Default rule.
+
+--providers.docker.endpoint  (Default: "unix:///var/run/docker.sock")
+    Docker server endpoint. Can be a tcp or a unix socket endpoint.
+
+--providers.docker.exposedbydefault  (Default: "true")
+    Expose containers by default.
+
+--providers.docker.network  (Default: "")
+    Default Docker network used.
+
+--providers.docker.swarmmode  (Default: "false")
+    Use Docker on Swarm Mode.
+
+--providers.docker.swarmmoderefreshseconds  (Default: "15")
+    Polling interval for swarm mode.
+
+--providers.docker.tls.ca  (Default: "")
+    TLS CA
+
+--providers.docker.tls.caoptional  (Default: "false")
+    TLS CA.Optional
+
+--providers.docker.tls.cert  (Default: "")
+    TLS cert
+
+--providers.docker.tls.insecureskipverify  (Default: "false")
+    TLS insecure skip verify
+
+--providers.docker.tls.key  (Default: "")
+    TLS key
+
+--providers.docker.usebindportip  (Default: "false")
+    Use the ip address from the bound port, rather than from the inner network.
+
+--providers.docker.watch  (Default: "true")
+    Watch provider.
+
+--providers.file  (Default: "false")
+    Enable File backend with default settings.
+
+--providers.file.debugloggeneratedtemplate  (Default: "false")
+    Enable debug logging of generated configuration template.
+
+--providers.file.directory  (Default: "")
+    Load configuration from one or more .toml files in a directory.
+
+--providers.file.filename  (Default: "")
+    Override default configuration template. For advanced users :)
+
+--providers.file.watch  (Default: "true")
+    Watch provider.
+
+--providers.kubernetes  (Default: "false")
+    Enable Kubernetes backend with default settings.
+
+--providers.kubernetes.certauthfilepath  (Default: "")
+    Kubernetes certificate authority file path (not needed for in-cluster client).
+
+--providers.kubernetes.disablepasshostheaders  (Default: "false")
+    Kubernetes disable PassHost Headers.
+
+--providers.kubernetes.endpoint  (Default: "")
+    Kubernetes server endpoint (required for external cluster client).
+
+--providers.kubernetes.ingressclass  (Default: "")
+    Value of kubernetes.io/ingress.class annotation to watch for.
+
+--providers.kubernetes.ingressendpoint.hostname  (Default: "")
+    Hostname used for Kubernetes Ingress endpoints.
+
+--providers.kubernetes.ingressendpoint.ip  (Default: "")
+    IP used for Kubernetes Ingress endpoints.
+
+--providers.kubernetes.ingressendpoint.publishedservice  (Default: "")
+    Published Kubernetes Service to copy status from.
+
+--providers.kubernetes.labelselector  (Default: "")
+    Kubernetes Ingress label selector to use.
+
+--providers.kubernetes.namespaces  (Default: "")
+    Kubernetes namespaces.
+
+--providers.kubernetes.token  (Default: "")
+    Kubernetes bearer token (not needed for in-cluster client).
+
+--providers.kubernetescrd  (Default: "false")
+    Enable Kubernetes backend with default settings.
+
+--providers.kubernetescrd.certauthfilepath  (Default: "")
+    Kubernetes certificate authority file path (not needed for in-cluster client).
+
+--providers.kubernetescrd.disablepasshostheaders  (Default: "false")
+    Kubernetes disable PassHost Headers.
+
+--providers.kubernetescrd.endpoint  (Default: "")
+    Kubernetes server endpoint (required for external cluster client).
+
+--providers.kubernetescrd.ingressclass  (Default: "")
+    Value of kubernetes.io/ingress.class annotation to watch for.
+
+--providers.kubernetescrd.labelselector  (Default: "")
+    Kubernetes label selector to use.
+
+--providers.kubernetescrd.namespaces  (Default: "")
+    Kubernetes namespaces.
+
+--providers.kubernetescrd.token  (Default: "")
+    Kubernetes bearer token (not needed for in-cluster client).
+
+--providers.marathon  (Default: "false")
+    Enable Marathon backend with default settings.
+
+--providers.marathon.basic.httpbasicauthuser  (Default: "")
+    Basic authentication User.
+
+--providers.marathon.basic.httpbasicpassword  (Default: "")
+    Basic authentication Password.
+
+--providers.marathon.constraints  (Default: "")
+    Constraints is an expression that Traefik matches against the application's
+    labels to determine whether to create any route for that application.
+
+--providers.marathon.dcostoken  (Default: "")
+    DCOSToken for DCOS environment, This will override the Authorization header.
+
+--providers.marathon.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+    Default rule.
+
+--providers.marathon.dialertimeout  (Default: "5")
+    Set a dialer timeout for Marathon.
+
+--providers.marathon.endpoint  (Default: "http://127.0.0.1:8080")
+    Marathon server endpoint. You can also specify multiple endpoint for Marathon.
+
+--providers.marathon.exposedbydefault  (Default: "true")
+    Expose Marathon apps by default.
+
+--providers.marathon.forcetaskhostname  (Default: "false")
+    Force to use the task's hostname.
+
+--providers.marathon.keepalive  (Default: "10")
+    Set a TCP Keep Alive time.
+
+--providers.marathon.respectreadinesschecks  (Default: "false")
+    Filter out tasks with non-successful readiness checks during deployments.
+
+--providers.marathon.responseheadertimeout  (Default: "60")
+    Set a response header timeout for Marathon.
+
+--providers.marathon.tls.ca  (Default: "")
+    TLS CA
+
+--providers.marathon.tls.caoptional  (Default: "false")
+    TLS CA.Optional
+
+--providers.marathon.tls.cert  (Default: "")
+    TLS cert
+
+--providers.marathon.tls.insecureskipverify  (Default: "false")
+    TLS insecure skip verify
+
+--providers.marathon.tls.key  (Default: "")
+    TLS key
+
+--providers.marathon.tlshandshaketimeout  (Default: "5")
+    Set a TLS handshake timeout for Marathon.
+
+--providers.marathon.trace  (Default: "false")
+    Display additional provider logs.
+
+--providers.marathon.watch  (Default: "true")
+    Watch provider.
+
+--providers.providersthrottleduration  (Default: "2")
+    Backends throttle duration: minimum duration between 2 events from providers
+    before applying a new configuration. It avoids unnecessary reloads if multiples
+    events are sent in a short amount of time.
+
+--providers.rancher  (Default: "false")
+    Enable Rancher backend with default settings.
+
+--providers.rancher.constraints  (Default: "")
+    Constraints is an expression that Traefik matches against the container's labels
+    to determine whether to create any route for that container.
+
+--providers.rancher.defaultrule  (Default: "Host(`{{ normalize .Name }}`)")
+    Default rule.
+
+--providers.rancher.enableservicehealthfilter  (Default: "true")
+    Filter services with unhealthy states and inactive states.
+
+--providers.rancher.exposedbydefault  (Default: "true")
+    Expose containers by default.
+
+--providers.rancher.intervalpoll  (Default: "false")
+    Poll the Rancher metadata service every 'rancher.refreshseconds' (less
+    accurate).
+
+--providers.rancher.prefix  (Default: "latest")
+    Prefix used for accessing the Rancher metadata service.
+
+--providers.rancher.refreshseconds  (Default: "15")
+    Defines the polling interval in seconds.
+
+--providers.rancher.watch  (Default: "true")
+    Watch provider.
+
+--providers.rest  (Default: "false")
+    Enable Rest backend with default settings.
+
+--providers.rest.entrypoint  (Default: "traefik")
+    EntryPoint.
+
+--serverstransport.forwardingtimeouts.dialtimeout  (Default: "30")
+    The amount of time to wait until a connection to a backend server can be
+    established. If zero, no timeout exists.
+
+--serverstransport.forwardingtimeouts.responseheadertimeout  (Default: "0")
+    The amount of time to wait for a server's response headers after fully writing
+    the request (including its body, if any). If zero, no timeout exists.
+
+--serverstransport.forwardingtimeouts.idleconntimeout  (Default: "90s")
+    The maximum period for which an idle HTTP keep-alive connection to a backend
+    server will remain open before closing itself.
+
+--serverstransport.insecureskipverify  (Default: "false")
+    Disable SSL certificate verification.
+
+--serverstransport.maxidleconnsperhost  (Default: "200")
+    If non-zero, controls the maximum idle (keep-alive) to keep per-host. If zero,
+    DefaultMaxIdleConnsPerHost is used
+
+--serverstransport.rootcas  (Default: "")
+    Add cert file for self-signed certificate.
+
+--tracing  (Default: "false")
+    OpenTracing configuration.
+
+--tracing.datadog  (Default: "false")
+    Settings for DataDog.
+
+--tracing.datadog.bagageprefixheadername  (Default: "")
+    Specifies the header name prefix that will be used to store baggage items in a
+    map.
+
+--tracing.datadog.debug  (Default: "false")
+    Enable DataDog debug.
+
+--tracing.datadog.globaltag  (Default: "")
+    Key:Value tag to be set on all the spans.
+
+--tracing.datadog.localagenthostport  (Default: "localhost:8126")
+    Set datadog-agent's host:port that the reporter will used.
+
+--tracing.datadog.parentidheadername  (Default: "")
+    Specifies the header name that will be used to store the parent ID.
+
+--tracing.datadog.prioritysampling  (Default: "false")
+    Enable priority sampling. When using distributed tracing, this option must be
+    enabled in order to get all the parts of a distributed trace sampled.
+
+--tracing.datadog.samplingpriorityheadername  (Default: "")
+    Specifies the header name that will be used to store the sampling priority.
+
+--tracing.datadog.traceidheadername  (Default: "")
+    Specifies the header name that will be used to store the trace ID.
+
+--tracing.haystack  (Default: "false")
+    Settings for Haystack.
+
+--tracing.haystack.baggageprefixheadername  (Default: "")
+    Specifies the header name prefix that will be used to store baggage items in a
+    map.
+
+--tracing.haystack.globaltag  (Default: "")
+    Key:Value tag to be set on all the spans.
+
+--tracing.haystack.localagenthost  (Default: "LocalAgentHost")
+    Set haystack-agent's host that the reporter will used.
+
+--tracing.haystack.localagentport  (Default: "35000")
+    Set haystack-agent's port that the reporter will used.
+
+--tracing.haystack.parentidheadername  (Default: "")
+    Specifies the header name that will be used to store the parent ID.
+
+--tracing.haystack.spanidheadername  (Default: "")
+    Specifies the header name that will be used to store the span ID.
+
+--tracing.haystack.traceidheadername  (Default: "")
+    Specifies the header name that will be used to store the trace ID.
+
+--tracing.instana  (Default: "false")
+    Settings for Instana.
+
+--tracing.instana.localagenthost  (Default: "localhost")
+    Set instana-agent's host that the reporter will used.
+
+--tracing.instana.localagentport  (Default: "42699")
+    Set instana-agent's port that the reporter will used.
+
+--tracing.instana.loglevel  (Default: "info")
+    Set instana-agent's log level. ('error','warn','info','debug')
+
+--tracing.jaeger  (Default: "false")
+    Settings for jaeger.
+
+--tracing.jaeger.gen128bit  (Default: "false")
+    Generate 128 bit span IDs.
+
+--tracing.jaeger.localagenthostport  (Default: "127.0.0.1:6831")
+    Set jaeger-agent's host:port that the reporter will used.
+
+--tracing.jaeger.propagation  (Default: "jaeger")
+    Which propgation format to use (jaeger/b3).
+
+--tracing.jaeger.samplingparam  (Default: "1.000000")
+    Set the sampling parameter.
+
+--tracing.jaeger.samplingserverurl  (Default: "http://localhost:5778/sampling")
+    Set the sampling server url.
+
+--tracing.jaeger.samplingtype  (Default: "const")
+    Set the sampling type.
+
+--tracing.jaeger.tracecontextheadername  (Default: "uber-trace-id")
+    Set the header to use for the trace-id.
+
+--tracing.servicename  (Default: "traefik")
+    Set the name for this service.
+
+--tracing.spannamelimit  (Default: "0")
+    Set the maximum character limit for Span names (default 0 = no limit).
+
+--tracing.zipkin  (Default: "false")
+    Settings for zipkin.
+
+--tracing.zipkin.debug  (Default: "false")
+    Enable Zipkin debug.
+
+--tracing.zipkin.httpendpoint  (Default: "http://localhost:9411/api/v1/spans")
+    HTTP Endpoint to report traces to.
+
+--tracing.zipkin.id128bit  (Default: "true")
+    Use Zipkin 128 bit root span IDs.
+
+--tracing.zipkin.samespan  (Default: "false")
+    Use Zipkin SameSpan RPC style traces.
+
+--tracing.zipkin.samplerate  (Default: "1.000000")
+    The rate between 0.0 and 1.0 of requests to trace.</code></pre>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+
+
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+    <!-- Further information -->
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+
+            <!-- Copyright and theme information -->
+            <div class="md-footer-copyright">
+                
+                <div class="md-footer-copyright__highlight">
+                    Copyright &copy; 2016-2019 Containous
+                </div>
+                
+                powered by
+                <a href="https://www.mkdocs.org" title="MkDocs">MkDocs</a>
+                and
+                <a href="https://squidfunk.github.io/mkdocs-material/"
+                   title="Material for MkDocs">
+                    Material for MkDocs</a>
+            </div>
+
+            <!-- Social links -->
+            
+            
+            
+        </div>
+    </div>
+</footer>
+
+
+    </div>
+    
+      <script src="../../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="../../../assets/js/hljs/highlight.pack.js"></script>
+      
+        <script src="../../../assets/js/extra.js"></script>
+      
+        <script src="../../../theme/js/structor-menu.js"></script>
+      
+    
+  </body>
+</html>
